@@ -1,26 +1,30 @@
 @import "settings";
-//@import "foundation";
-@import url(http://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700);//Exo+2
 @import url(http://fonts.googleapis.com/css?family=Shadows+Into+Light);
-@import url(http://fonts.googleapis.com/css?family=Codystar);
-@import url(http://fonts.googleapis.com/css?family=Quicksand:300,400,700);
-@import url(http://fonts.googleapis.com/css?family=Noto+Sans:400,700);
+@import url(http://fonts.googleapis.com/css?family=Quicksand:300,400);
 @import url(http://fonts.googleapis.com/css?family=Oxygen:300,400,700);
 
-// Or selectively include components
 @import
+"foundation/components/buttons",
+"foundation/components/clearing",
+"foundation/components/grid",
+"foundation/components/panels",
+"foundation/components/reveal",
+"foundation/components/side-nav",
+"foundation/components/top-bar",
+"foundation/components/type",
+"foundation/components/offcanvas",
+"foundation/components/visibility";
+
+// ** Unused Foundation components
 //   "foundation/components/accordion",
 //   "foundation/components/alert-boxes",
 //   "foundation/components/block-grid",
 //   "foundation/components/breadcrumbs",
 //   "foundation/components/button-groups",
-   "foundation/components/buttons",
-   "foundation/components/clearing",
 //   "foundation/components/dropdown",
 //   "foundation/components/dropdown-buttons",
 //   "foundation/components/flex-video",
 //   "foundation/components/forms",
-   "foundation/components/grid",
 //   "foundation/components/inline-lists",
 //   "foundation/components/joyride",
 //   "foundation/components/keystrokes",
@@ -28,11 +32,8 @@
 //   "foundation/components/magellan",
 //   "foundation/components/orbit",
 //   "foundation/components/pagination",
-   "foundation/components/panels",
 //   "foundation/components/pricing-tables",
 //   "foundation/components/progress-bars",
-   "foundation/components/reveal",
-   "foundation/components/side-nav",
 //   "foundation/components/split-buttons",
 //   "foundation/components/sub-nav",
 //   "foundation/components/switches",
@@ -40,36 +41,39 @@
 //   "foundation/components/tabs",
 //   "foundation/components/thumbs",
 //   "foundation/components/tooltips",
-   "foundation/components/top-bar",
-   "foundation/components/type",
-   "foundation/components/offcanvas",
-   "foundation/components/visibility";
 
-$font-color: #fcf8f2;
-$link-color: #D11D23;
-$alt-font-color: #e8d3bf;
+@mixin make-rainbow($colors) {
+  //changes text color of children to be a rainbow of $colors (array).
+  @for $i from 1 through length($colors) {
+    $color: nth($colors, $i);
+    &:nth-child(#{$i}) {
+      color: $color;
+    }
+  }
+}
+
+//font colors for Cherry Cola page
+$cc-font-color: #fcf8f2;
+$cc-link-color: #D11D23;
+$cc-alt-font-color: #e8d3bf;
+
 body {
   background: url('../images/bg-1.png');
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
-  //font-family: 'Josefin Sans', 'Helvetica Neue', sans-serif;
   &#cherry-cola {
     background: url('../images/cola-bg.jpg');
-    color: $font-color;
+    color: $cc-font-color;
     a {
-      color: $link-color;
+      color: $cc-link-color;
     }
     h1,h2,h3,h4, {
-      color: $font-color
+      color: $cc-font-color
     }
   }
 }
-
-/*h1, h2, h3, h4, h5, h6 {
-  font-family: 'Josefin Sans', 'Helvetica Neue', sans-serif;
-}*/
 
 .top-bar {
   padding-top: 6px;
@@ -81,7 +85,7 @@ body {
       font-weight: lighter;
       font-size: 36px;
       body#cherry-cola & {
-        color: $font-color;
+        color: $cc-font-color;
       }
     }
   }
@@ -266,24 +270,7 @@ body {
       }
     }
     padding-right: 10px;
-    /*
-    border-width: 1px;
-    border-style: solid;
-    border-image-source: linear-gradient(to right, transparent, black);//radial-gradient(400px, add-alpha($oil,0.8) 1px, rgba(255,255,255,0) 200px);
-    */
-
-    border-width: 0 1px 0 0;
-    border-style: solid;
-    /*-webkit-border-image:
-    -webkit-gradient(linear, 0 100%, 0 0, from(black), to(rgba(0, 0, 0, 0))) 1 100%;
-    -webkit-border-image:
-    -webkit-linear-gradient(bottom, black, rgba(0, 0, 0, 0)) 1 100%;
-    -moz-border-image:
-    -moz-linear-gradient(bottom, black, rgba(0, 0, 0, 0)) 1 100%;
-    -o-border-image:
-    -o-linear-gradient(bottom, black, rgba(0, 0, 0, 0)) 1 100%;*/
-    border: none;//border-image: linear-gradient(to top, transparent, transparentize(black, 0.7), rgba(0, 0, 0, 0)) 1 100%;
-  }
+    border: none;  }
 }
 #bio {
   //display: none;
