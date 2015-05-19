@@ -1,20 +1,26 @@
 @import "settings";
-@import "foundation";
+//@import "foundation";
+@import url(http://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700);//Exo+2
+@import url(http://fonts.googleapis.com/css?family=Shadows+Into+Light);
+@import url(http://fonts.googleapis.com/css?family=Codystar);
+@import url(http://fonts.googleapis.com/css?family=Quicksand:300,400,700);
+@import url(http://fonts.googleapis.com/css?family=Noto+Sans:400,700);
+@import url(http://fonts.googleapis.com/css?family=Oxygen:300,400,700);
 
 // Or selectively include components
-// @import
+@import
 //   "foundation/components/accordion",
 //   "foundation/components/alert-boxes",
 //   "foundation/components/block-grid",
 //   "foundation/components/breadcrumbs",
 //   "foundation/components/button-groups",
-//   "foundation/components/buttons",
-//   "foundation/components/clearing",
+   "foundation/components/buttons",
+   "foundation/components/clearing",
 //   "foundation/components/dropdown",
 //   "foundation/components/dropdown-buttons",
 //   "foundation/components/flex-video",
 //   "foundation/components/forms",
-//   "foundation/components/grid",
+   "foundation/components/grid",
 //   "foundation/components/inline-lists",
 //   "foundation/components/joyride",
 //   "foundation/components/keystrokes",
@@ -22,11 +28,11 @@
 //   "foundation/components/magellan",
 //   "foundation/components/orbit",
 //   "foundation/components/pagination",
-//   "foundation/components/panels",
+   "foundation/components/panels",
 //   "foundation/components/pricing-tables",
 //   "foundation/components/progress-bars",
-//   "foundation/components/reveal",
-//   "foundation/components/side-nav",
+   "foundation/components/reveal",
+   "foundation/components/side-nav",
 //   "foundation/components/split-buttons",
 //   "foundation/components/sub-nav",
 //   "foundation/components/switches",
@@ -34,7 +40,327 @@
 //   "foundation/components/tabs",
 //   "foundation/components/thumbs",
 //   "foundation/components/tooltips",
-//   "foundation/components/top-bar",
-//   "foundation/components/type",
-//   "foundation/components/offcanvas",
-//   "foundation/components/visibility";
+   "foundation/components/top-bar",
+   "foundation/components/type",
+   "foundation/components/offcanvas",
+   "foundation/components/visibility";
+
+$font-color: #fcf8f2;
+$link-color: #D11D23;
+$alt-font-color: #e8d3bf;
+body {
+  background: url('../images/bg-1.png');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  //font-family: 'Josefin Sans', 'Helvetica Neue', sans-serif;
+  &#cherry-cola {
+    background: url('../images/cola-bg.jpg');
+    color: $font-color;
+    a {
+      color: $link-color;
+    }
+    h1,h2,h3,h4, {
+      color: $font-color
+    }
+  }
+}
+
+/*h1, h2, h3, h4, h5, h6 {
+  font-family: 'Josefin Sans', 'Helvetica Neue', sans-serif;
+}*/
+
+.top-bar {
+  padding-top: 6px;
+  padding-bottom: 10px;
+  height: auto !important;
+  .title-area h1 {
+    margin: 0;
+    a {
+      font-weight: lighter;
+      font-size: 36px;
+      body#cherry-cola & {
+        color: $font-color;
+      }
+    }
+  }
+  @media #{$small-only} {
+    .top-nav li {
+      a {
+        padding-top: 8px;
+        padding-bottom: 0;
+      }r
+      &:last-child > a {
+        padding-right: 12px;
+      }
+    }
+  }
+  body#cherry-cola & {
+    background: #2B0A12;
+    .top-bar-section ul li {
+      background: inherit;
+      a {
+        background: inherit;
+      }
+    }
+  }
+}
+
+.container {
+  background: rgba(255,255,255,.8);
+  padding-bottom: 30px;
+  min-height: 520px;
+  @include box-shadow(rgba(0,0,0,0.1) 0 6px 20px);
+  body#cherry-cola & {
+    background: rgba(14,15,32,.4);
+    @include box-shadow(none);
+  }
+}
+
+.album-title {
+  font-family: 'Shadows Into Light', cursive !important;
+  @media #{$medium-up} {
+    height: 40px;
+    > div {
+      height: inherit;
+      position: absolute;
+      z-index: 100;
+      padding-left: 20px;
+    }
+  }
+  h1 {
+    font-family: inherit;
+    text-transform: uppercase;
+    font-size: 4em;
+    line-height: .9em;
+    margin-top: 20px;
+    .featured {
+      font-size: 1.4em;
+      line-height: .9em;
+    }
+    i {
+      font-style: normal;
+      @include make-rainbow($rainbow-colors);
+      text-shadow: white 1px 1px 1px;
+      &:last-child {
+        text-shadow: rgba(42,48,79,.6) 0px 0px 12px;
+      }
+    }
+  }
+  .subtitle {
+    font-size: 1.3em;
+  }
+}
+
+.cover-shot {
+  @media #{$medium-up} {
+    width: 68%;
+    max-width: 260px;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  /*div > & {
+
+  }*/
+}
+
+.page-title {
+  margin-top: 20px;
+  img.title {
+    max-height: 54px;
+  }
+  @media #{$medium-up} {
+    height: 106px;
+    margin-top: 0;
+    > div {
+      height: inherit;
+      position: absolute;
+      z-index: 100;
+      top: 20px;
+      img.title {
+        width: 100%;
+        max-height: none;
+      }
+    }
+  }
+  .subtitle {
+    //background: $primary-color;
+
+    font-family: 'Shadows Into Light', cursive !important;
+    @media #{$medium-up} {
+      margin-top: 20px;
+    }
+    @media #{$large-up} {
+
+    }
+    .featured {
+      font-size: 1.2em;
+    }
+
+    a {
+      text-shadow: rgba(0,0,0,.6) 0 0 6px;
+    }
+    i {
+      font-style: normal;
+      @include make-rainbow($rainbow-colors);
+      &.arrow {
+        font-size: .6em;
+      }
+    }
+  }
+}
+
+.tracks {
+  margin-top: 20px;
+  @media #{$large-up} {
+    text-align: right;
+  }
+  h3 {
+    color: $primary-color;
+    font-weight: 400;
+    margin-bottom: 0;
+    text-align: inherit;
+  }
+  .side-nav {
+    padding-top: 0;
+    li {
+      margin-bottom: 0;
+      text-align: inherit;
+      font-size: 18px;
+      border-bottom: 1px solid rgba(0,0,0,.05);
+      @include make-rainbow($rainbow-colors);
+      a {
+        color: inherit;
+        font-weight: 600;
+        &:hover {
+          background: rgba(255,255,255,.7);
+        }
+        &.disabled {
+          font-size: 14px;
+          font-weight: 400;
+          color: $base;
+          text-decoration: none;
+          cursor: default;
+          &:hover {
+            color: $base;
+            background: none;
+          }
+        }
+      }
+    }
+  }
+  @media #{$small-up} {
+    h3 {
+      padding-right: rem-calc(14);
+    }
+  }
+  @media #{$large-up} {
+    h3 {
+      padding-right: 0;
+    }
+    .side-nav {
+      li {
+        a {padding-right: 0;}
+      }
+    }
+    padding-right: 10px;
+    /*
+    border-width: 1px;
+    border-style: solid;
+    border-image-source: linear-gradient(to right, transparent, black);//radial-gradient(400px, add-alpha($oil,0.8) 1px, rgba(255,255,255,0) 200px);
+    */
+
+    border-width: 0 1px 0 0;
+    border-style: solid;
+    /*-webkit-border-image:
+    -webkit-gradient(linear, 0 100%, 0 0, from(black), to(rgba(0, 0, 0, 0))) 1 100%;
+    -webkit-border-image:
+    -webkit-linear-gradient(bottom, black, rgba(0, 0, 0, 0)) 1 100%;
+    -moz-border-image:
+    -moz-linear-gradient(bottom, black, rgba(0, 0, 0, 0)) 1 100%;
+    -o-border-image:
+    -o-linear-gradient(bottom, black, rgba(0, 0, 0, 0)) 1 100%;*/
+    border: none;//border-image: linear-gradient(to top, transparent, transparentize(black, 0.7), rgba(0, 0, 0, 0)) 1 100%;
+  }
+}
+#bio {
+  //display: none;
+  .panel {
+    margin-top: 20px;
+    background-color: #7E527A;
+    background-image: url('../images/spec-looking-down.png');
+    background-size: cover;
+    background-position: left;
+    @include box-shadow(rgba(0,0,0,0.15) -6px 0 14px);
+    h3 {
+      //font-size: 18px;
+      font-weight: normal;
+    }
+    p, h1, h2, h3, h4 {
+      color: white;
+    }
+    p {
+      margin-top: 80px;
+      font-size: rem-calc(12);
+    }
+  }
+}
+
+.lyrics {
+  font-family: 'Shadows Into Light', cursive;
+  p {
+    font-size: 18px;
+    margin: 0;
+    line-height: 24px;
+  }
+  body#cherry-cola & {
+    color: $alt-font-color;
+  }
+}
+
+.controls {
+  font-size: 14px;
+  padding-top: 40px;
+  h3 {
+    font-size: 18px;
+  }
+}
+
+#game {
+  text-align: center;
+  canvas {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+footer {
+  padding-top: 20px;
+  color: $steel;
+  font-size: 12px;
+  p {
+    font-size: inherit;
+    text-shadow: rgba(255,255,255,.5) 1px 1px 0px;
+  }
+  @media #{$small-only} {
+    p {
+      text-align: center !important;
+    }
+  }
+  @media #{$medium-only} {
+    p {
+      font-size: 10px;
+    }
+  }
+  body#cherry-cola & {
+    a {
+      color: transparentize($vapor,.4);
+    }
+    p {
+      color: transparentize($vapor,.55);
+      text-shadow: none;
+    }
+  }
+}

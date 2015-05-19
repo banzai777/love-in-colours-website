@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Love in Colours | a new album by SPEC .</title>
     <link rel="stylesheet" href="stylesheets/app.css" />
+
   </head>
-  <body>
+  <body id="cherry-cola">
   <nav class="top-bar" data-topbar role="navigation">
     <ul class="title-area left">
       <li class="name">
@@ -17,68 +18,524 @@
     <section class="top-bar-section right">
       <!-- Right Nav Section -->
       <ul class="top-nav">
-        <li class="social-icon left"><a href="https://facebook.com" title="Visit me on Facebook"><img src="images/nav-icon-facebook.png" alt="Facebook" /></a></li>
-        <li class="social-icon left"><a href="https://instagram.com" title="Check out my Instagram"><img src="images/nav-icon-instagram.png" alt="Instagram" /></a></li>
+        <li class="social-icon left"><a href="https://facebook.com/thingsofspec" title="Visit me on Facebook"><img src="images/nav-icon-facebook.png" alt="Facebook" /></a></li>
+        <li class="social-icon left"><a href="https://instagram.com/lifeasaspec" title="Check out my Instagram"><img src="images/nav-icon-instagram.png" alt="Instagram" /></a></li>
       </ul>
     </section>
   </nav>
 
-  <div class="row container large-collapse">
+  <div class="row container">
 
-        <div class="album-title small-12 columns text-center">
-          <div class="row">
-            <div class="medium-12 columns">
-              <h1>Love in<br />
-                <span class="featured"><i>C</i><i>o</i><i>l</i><i>o</i><i>u</i><i>r</i><i>s</i></span></h1><p class="subtitle">a new album from SPEC</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="large-9 columns">
-          <div class="row">
-            <div class="show-for-medium-up medium-6 large-6 columns">
-              <img src="images/guitar-flowers-shoes.png" alt="Love in Colours album art" class="cover-shot right" />
-            </div>
-            <div class="small-12 medium-6 large-6 columns">
-              <div class="tracks">
-                <h3 class="text-right">Tracks:</h3>
-                <ul class="side-nav text-right">
-                  <li><a href="/">I Can See Us Forever (feat. Toro)</a></li>
-                  <li><a href="/">Cherry Cola</a></li>
-                  <li><a href="/">Cute Little Girl</a></li>
-                  <li><a href="/">Creep to My Room</a></li>
-                  <li><a href="/">Interlude</a></li>
-                  <li><a href="/">The Entire Full Moon is Reflected</a></li>
-                  <li><a href="/">Feel So Real</a></li>
-                  <li><a href="/">Last Night</a></li>
-                  <li><a href="/">Until We Become Stardust</a></li>
-                  <li><a href="/">Love in Colours</a></li>
-                </ul>
-                <a href="/" class="button expand success large" title="Buy the Album">Get the Album</a>
+        <div class="page-title small-12 large-12 columns text-center end">
+          <div class="wrap">
+            <div class="row">
+              <div class="medium-5 large-6 columns">
+                <img src="images/cherry-cola-title.png" alt="Cherry Cola" class="title" />
+              </div>
+              <div class="medium-7 large-6 columns">
+                <div class="subtitle">from the album <a href="index.html" class="featured">Love in <i>C</i><i>o</i><i>l</i><i>o</i><i>u</i><i>r</i><i>s</i></a></div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="large-3 columns show-for-large-up">
-          <div id="bio">
-            <div class="panel">
-              <h3>Who is SPEC?</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sollicitudin enim pulvinar metus semper sagittis. Ut egestas tempor velit vitae venenatis. Donec mollis facilisis ornare.</p>
+        <div class="medium-12 large-9 columns">
+          <div class="row">
+            <div class="show-for-large-up large-2 columns controls text-right">
+              <!-- mute/unmute button -->
+              <h3>Controls:</h3>
+              &#x25B2; & &#x25BC; keys
+              <!-- move: [up][down] -->
             </div>
+            <div class="large-10 columns" id="game">
+              <!-- canvas -->
+            </div>
+          </div>
+        </div>
+
+        <div class="medium-6 large-3 columns show-for-large-up">
+          <div class="lyrics">
+            <p>I hope it is you,</p>
+            <p>that I wake up to,</p>
+            <p>I wake up to</p>
+            <p>a voice, it sets my veins awake</p>
+            <p>and keeps me up all night</p>
+            <p>and dont my feelings show you baby?</p>
+            <p>I'm alive</p>
+            <p>you said we were fine, but</p>
+            <p>it wasn't all you said it was</p>
+            <p>but you know</p>
+            <p>you know</p>
+            <p>you that its you?</p>
+            <p>that I hold on to?</p>
+            <p>You know that its you,</p>
+            <p>that I hold on to.</p>
           </div>
         </div>
 
   </div>
   <footer class="row">
     <div class="medium-6 columns">
-      <p>&copy; 2015 Tim Jack Wilkins, All rights reserved.</p>
+      <p>&copy; 2015, Tim Jack Wilkins. All rights reserved.</p>
     </div>
-    <div class="medium-6 columns text-right">
+    <!-- <div class="medium-6 columns text-right">
       <p>Web design & development by <a href="http://joshrenaud.info" title="Josh Renaud" target="_blank">Josh Renaud</a></p>
-    </div>
+    </div> -->
   </footer>
+  <script>
+    /**
+     * Scoreboard stuff
+     *  _   0
+     * |_| 123 <= coresponding indexes, ie. for 1 is
+     * |_| 456    bar 3 and 6 visible => 0 001 001
+     *
+     */
+    var NUMS = [
+              "1 101 111",
+              "0 001 001",
+              "1 011 110",
+              "1 011 011",
+              "0 111 001",
+              "1 110 011",
+              "1 110 111",
+              "1 001 001",
+              "1 111 111",
+              "1 111 011"
+            ],
+            POINTS = [
+              [0, 0, 1, 0],
+              [0, 0, 0, 1],
+              [0, 1, 1, 1],
+              [1, 0, 1, 1],
+              [0, 1, 0, 2],
+              [0, 2, 1, 2],
+              [1, 1, 1, 2]
+            ];
 
+    var cherryImg = new Image();
+    cherryImg.src = 'images/cherry.png';
+
+    var song = new Audio('audio/cherry-cola-spec.mp3');
+
+    Width = 600;//global
+    Height = 420;//global
+    var widthAdd = 40;
+    var heightAdd = 180;
+    var currentWidth = Width;
+    var currentHeight = Height;
+    var textSize = 32;
+    var textPadding = 16;
+    var ballSpeed = 9;
+    var ballSize = 48;
+    var paddleWidth = 20;
+    var paddleHeight = 100;
+
+    if ( window.innerWidth - widthAdd <= Width ){
+      currentWidth = window.innerWidth - widthAdd;
+      ballSpeed = 6;
+      textSize = 18;
+      textPadding = 8;
+      paddleWidth *= .5;
+    }
+    if ( window.innerHeight - heightAdd <= Height){
+      currentHeight = window.innerHeight - heightAdd;
+      paddleHeight = currentHeight / 6;
+    }
+
+    // Convert the strings in NUMS to a boolean array
+    for (var i = 0; i < NUMS.length; i++) {
+      var n = NUMS[i].replace(/\s+/g, "");
+      NUMS[i] = (function() {
+        var l = [];
+        for (var j = 0; j < n.length; j++) {
+          l.push(n[j] === "1");
+        }
+        return l;
+      })();
+    }
+    function pad(str, padding, width) {
+      return (new Array(width||2).join(padding||0)+str).slice(-width)
+    }
+    function drawNumber(n, x, y, ralign) {
+      n = n.toString(); // convert to string => possible to loop thru all digits
+
+      var size = textSize,
+          padding = textPadding;
+
+      ctx.save();
+      ctx.strokeStyle = "#D11D23";//"#fff";
+      ctx.lineCap = "square";
+      ctx.lineWidth = padding/2;
+
+      if (ralign) { // if right aligned move x coord accordingly
+        x -= (n.length*(padding+size)-padding);
+      }
+      ctx.translate(x, y);
+
+      for (var i = 0; i < n.length; i++) {
+        var num = NUMS[parseInt(n[i])];
+
+        ctx.beginPath();
+        for (var j = 0; j < num.length; j++) {
+          if (num[j]) {
+            var p = POINTS[j];
+            ctx.moveTo(p[0]*size, p[1]*size);
+            ctx.lineTo(p[2]*size, p[3]*size);
+          }
+        }
+        ctx.closePath();
+        ctx.stroke();
+        // fix anoying bug
+        var p2 = padding/2,
+                p4 = padding/4;
+        ctx.fillRect(size - p4, 2*size - p4, p2, p2);
+
+        ctx.translate(size+padding, 0);
+      }
+      ctx.restore();
+    }
+
+    var
+            /**
+             * Constants
+             */
+            WIDTH  = currentWidth,
+            HEIGHT = currentHeight,
+
+            pi = Math.PI,
+
+            UpArrow   = 38,
+            DownArrow = 40,
+
+            Cherry = document.getElementById("cherry"),
+
+            /**
+             * Game elements
+             */
+            canvas,
+            ctx,
+            keystate,
+
+            /**
+             * The player paddle
+             *
+             * @type {Object}
+             */
+            player = {
+              x: null,
+              y: null,
+              score: null,
+
+              width:  paddleWidth,
+              height: paddleHeight,
+
+              /**
+               * Update the position depending on pressed keys
+               */
+              update: function() {
+                if (keystate[UpArrow]) this.y -= 7;
+                if (keystate[DownArrow]) this.y += 7;
+                // keep the paddle inside of the canvas
+                this.y = Math.max(Math.min(this.y, HEIGHT - this.height), 0);
+              },
+
+              /**
+               * Draw the player paddle to the canvas
+               */
+              draw: function() {
+                ctx.fillRect(this.x, this.y, this.width, this.height);
+              }
+            },
+
+            /**
+             * The ai paddle
+             *
+             * @type {Object}
+             */
+            ai = {
+              x: null,
+              y: null,
+              score: null,
+
+              width:  paddleWidth,
+              height: paddleHeight,
+
+              /**
+               * Update the position depending on the ball position
+               */
+              update: function() {
+                // calculate ideal position
+                var desty = ball.y - (this.height - ball.side)*0.5;
+                // ease the movement towards the ideal position
+                this.y += (desty - this.y) * 0.1;
+                // keep the paddle inside of the canvas
+                this.y = Math.max(Math.min(this.y, HEIGHT - this.height), 0);
+              },
+
+              /**
+               * Draw the ai paddle to the canvas
+               */
+              draw: function() {
+                ctx.fillRect(this.x, this.y, this.width, this.height);
+              }
+            },
+
+            /**
+             * The ball object
+             *
+             * @type {Object}
+             */
+            ball = {
+              x:   null,
+              y:   null,
+              vel: null,
+
+              side:  ballSize,
+              speed: ballSpeed,
+              /*cherry: function() {
+               var img = new Image();
+               img.src = 'cherry.png';
+               return img;
+               },*/
+              /**
+               * Serves the ball towards the specified side
+               *
+               * @param  {number} side 1 right
+               *                       -1 left
+               */
+              serve: function(side) {
+                // set the x and y position
+                var r = Math.random();
+                this.x = side===1 ? player.x+player.width : ai.x - this.side;
+                this.y = (HEIGHT - this.side)*r;
+                // calculate out-angle, higher/lower on the y-axis =>
+                // steeper angle
+                var phi = 0.1*pi*(1 - 2*r);
+                // set velocity direction and magnitude
+                this.vel = {
+                  x: side*this.speed*Math.cos(phi),
+                  y: this.speed*Math.sin(phi)
+                }
+              },
+
+              /**
+               * Update the ball position and keep it within the canvas
+               */
+              update: function() {
+                // update position with current velocity
+                this.x += this.vel.x;
+                this.y += this.vel.y;
+                // check if out of the canvas in the y direction
+                if (0 > this.y || this.y+this.side > HEIGHT) {
+                  // calculate and add the right offset, i.e. how far
+                  // inside of the canvas the ball is
+                  var offset = this.vel.y < 0 ? 0 - this.y : HEIGHT - (this.y+this.side);
+                  this.y += 2*offset;
+                  // mirror the y velocity
+                  this.vel.y *= -1;
+                }
+                // helper function to check intesectiont between two
+                // axis aligned bounding boxex (AABB)
+                var AABBIntersect = function(ax, ay, aw, ah, bx, by, bw, bh) {
+                  return ax < bx+bw && ay < by+bh && bx < ax+aw && by < ay+ah;
+                };
+
+                // check againts target paddle to check collision in x
+                // direction
+                var pdle = this.vel.x < 0 ? player : ai;
+                if (AABBIntersect(pdle.x, pdle.y, pdle.width, pdle.height,
+                                this.x, this.y, this.side, this.side)
+                ) {
+                  // set the x position and calculate reflection angle
+                  this.x = pdle===player ? player.x+player.width : ai.x - this.side;
+                  var n = (this.y+this.side - pdle.y)/(pdle.height+this.side);
+                  var phi = 0.25*pi*(2*n - 1); // pi/4 = 45
+                  // calculate smash value and update velocity
+                  var smash = Math.abs(phi) > 0.2*pi ? 1.5 : 1;
+                  this.vel.x = smash*(pdle===player ? 1 : -1)*this.speed*Math.cos(phi);
+                  this.vel.y = smash*this.speed*Math.sin(phi);
+                }
+
+                // reset the ball when ball outside of the canvas in the
+                // x direction
+                if (0 > this.x+this.side || this.x > WIDTH) {
+                  var isplayer = pdle === player;
+
+                  this.serve(isplayer ? 1 : -1);
+                  player.score += isplayer ? 0 : 1;
+                  ai.score += isplayer ? 1 : 0;
+                }
+              },
+
+              /**
+               * Draw the ball to the canvas
+               */
+              draw: function() {
+                //ctx.fillRect(this.x, this.y, this.side, this.side);
+                //console.log(this.cherry);
+
+                ctx.drawImage(cherryImg,this.x, this.y);
+              }
+            };
+
+    function requestFullscreen() {
+      //console.log(canvas);
+      /*if (canvas.requestFullscreen) {
+       canvas.requestFullscreen();
+       } else if (canvas.msRequestFullscreen) {
+       canvas.msRequestFullscreen();
+       } else if (canvas.mozRequestFullScreen) {
+       canvas.mozRequestFullScreen();
+       } else if (canvas.webkitRequestFullscreen) {
+       canvas.webkitRequestFullscreen();
+       }*/
+      /*canvas.width = WIDTH = window.innerWidth;
+       canvas.height = HEIGHT = window.innerHeight;
+       init();
+       window.onresize = function() {
+       canvas.width = WIDTH = window.innerWidth;
+       canvas.height = HEIGHT = window.innerHeight;
+       init();
+       }*/
+    }
+
+    /**
+     * Starts the game
+     */
+    function main() {
+      // create, initiate and append game canvas
+      canvas = document.createElement("canvas");
+      canvas.width = WIDTH;
+      canvas.height = HEIGHT;
+
+      bg = canvas.getContext("2d");
+      ctx = canvas.getContext("2d");
+      wrapper = document.getElementById("game");
+      console.log(wrapper);
+      wrapper.appendChild(canvas);
+
+      song.play();
+
+      keystate = {};
+      // keep track of keyboard presses
+      document.addEventListener("keydown", function(evt) {
+        keystate[evt.keyCode] = true;
+      });
+      document.addEventListener("keyup", function(evt) {
+        delete keystate[evt.keyCode];
+      });
+
+      init(); // initiate game objects
+
+      function touchevt(evt) {
+        var el = evt.target,
+                oy = 0;
+
+        do {
+          oy += el.offsetTop;
+        } while (el = el.parentOffset)
+
+        player.y = evt.touches[0].clientY - oy - player.height/2;
+      }
+      canvas.addEventListener("touchmove", touchevt);
+      canvas.addEventListener("touchstart", touchevt);
+      window.addEventListener("keydown", function(e) {
+        // space and arrow keys
+        if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+          e.preventDefault();
+        }
+      }, false);
+      /*var d = document.createElement("div");
+       d.innerHTML = '<svg onclick="requestFullscreen()"width="20" height="16" opacity="0.5"><path d="M0 5v-5h5m10 0h5v5m0 6v5h-5m-10 0h-5v-5M6 6h8v4h-8z"style="fill:none;stroke:#000;stroke-width:4"></path></svg>';
+       document.body.appendChild(d);*/
+
+      // game loop function
+      var loop = function() {
+        update();
+        draw();
+
+        window.requestAnimationFrame(loop, canvas);
+      };
+      window.requestAnimationFrame(loop, canvas);
+    }
+
+    /**
+     * Initatite game objects and set start positions
+     */
+    function init() {
+      player.x = player.width;
+      player.y = (HEIGHT - player.height)/2;
+      player.score = 0;
+
+      ai.x = WIDTH - (player.width + ai.width);
+      ai.y = (HEIGHT - ai.height)/2;
+      ai.score = 0;
+
+      ball.serve(1);
+    }
+
+    /**
+     * Update all game objects
+     */
+    function update() {
+      ball.update();
+      player.update();
+      ai.update();
+    }
+
+    /**
+     * Clear canvas and draw all game objects and net
+     */
+    function draw() {
+      ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+      ctx.save();
+
+      ctx.fillStyle = "#D11D23";//"#fff";
+
+
+      ball.draw();
+      player.draw();
+      ai.draw();
+
+      // draw the net
+      var w = 4;
+      var x = (WIDTH - w)*0.5;
+      var y = 0;
+      var step = HEIGHT/20; // how many net segments
+      while (y < HEIGHT) {
+        ctx.fillRect(x, y+step*0.25, w, step*0.5);
+        y += step;
+      }
+
+      // draw the scores
+      var w2 = WIDTH/2;
+      drawNumber(pad(player.score), w2-20, 20, true);
+      drawNumber(pad(ai.score), w2+20, 20);
+
+
+      ctx.restore();
+    }
+
+    // start and run the game
+    main();
+
+    document.ontouchmove = function(e) {
+      var target = e.currentTarget;
+      while(target) {
+        if(checkIfElementShouldScroll(target))
+          return;
+        target = target.parentNode;
+      }
+
+      e.preventDefault();
+    };
+
+    /*window.onresize = function() {
+      main();
+    }*/
+
+  </script>
     <script src="bower_components/modernizr/modernizr.js"></script>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
